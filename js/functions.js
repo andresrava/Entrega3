@@ -19,6 +19,6 @@ function AgregaAlCarrito(codigo) {
     }
     lista.push(codigo);
     sessionStorage.setItem('carrito', JSON.stringify(lista));
-    console.log(lista);
+    console.log("La lista es: " + lista);
 }
 

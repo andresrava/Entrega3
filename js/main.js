@@ -24,5 +24,17 @@ for (const elemento of articulosHTML) {
     
 
 }
+
 let contenido = document.getElementById("lista");
 contenido.innerHTML = salida;
+
+const elegidos = JSON.parse(sessionStorage.getItem("carrito"));
+console.log("Elegidos: " );
+console.log(elegidos);
+let seleccion = "";
+for (const elemento of elegidos) {
+    let indice = Number(elemento);
+    console.log(indice);
+    let articulo = articulosHTML[indice].nombre;
+    seleccion += '<li class="list-group-item">${artculo}<button type="button" class="btn btn-secondary">Secondary</button></li>'
+}
