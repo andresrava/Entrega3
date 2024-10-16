@@ -1,9 +1,9 @@
 
 function renderizaProductos() {
     let salida = "";
-
 for (const elemento of productos) {
-    salida += `<div class="col-md-3">
+    if (!(document.getElementById('flexCheckDefault').checked) || elemento.promocion) {
+        salida += `<div class="col-md-3">
                     <div class="card border-0 mb-3">
                         <img src="${elemento.imagen}" class="card-img-top" alt="${elemento.nombre}">
                         <div class="card-body text-center">
@@ -13,6 +13,8 @@ for (const elemento of productos) {
                         </div>
                     </div>
                 </div>`;
+    }
+    
 }
 
 let contenido = document.getElementById("lista");
@@ -95,3 +97,12 @@ function factura() {
     
 }
 
+function filtraProductos(lista) {
+    let filtrado = [];
+    for (const element of lista){
+        if (element.promocion) {
+            filtrado = filtrado.push(element);
+        }
+    }
+    return filtrado
+}
