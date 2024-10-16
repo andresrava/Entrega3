@@ -49,17 +49,40 @@ function renderizaCarrito() {
     const carrito = JSON.parse(sessionStorage.getItem('carrito'));
     let salida = "";
     let total = 0;
+    let indice = 1;
     for (const element of carrito) {
         let elementObj = JSON.parse(element);
         let nombre = elementObj.nombre;
         let precio = elementObj.precio;
         total += precio;
-        salida += `<li>${nombre}-- precio: ${precio}<button type="button" class="btn btn-secondary">Elimina</button></li>`
+        salida += `<li>${nombre}-- precio: ${precio}<button type="button" class="btn btn-secondary" id="${"boton" + indice}">Elimina</button></li>`;
+        indice += 1;
     }
     let listaCarrito = document.getElementById("listaCarrito");
     listaCarrito.innerHTML = salida;
     let importe = document.getElementById("total");
     importe.innerText = total;
+}
+
+function quitaDelCarrito(codigo) {
+    const carrito = JSON.parse(sessionStorage.getItem('carrito'));
+    carrito.splice((codigo-1), 1);
+    sessionStorage.setItem('carrito', JSON.stringify(carrito));
+    renderizaCarrito();
+    activaElimina();
+}
+
+function activaElimina() {
+    const carrito = JSON.parse(sessionStorage.getItem('carrito'));
+    for (let i = 1; i <= carrito.length; i++) {
+        let clave = "boton";
+        clave = clave.concat(i);
+        let boton = document.getElementById(clave);
+        boton.addEventListener("click", () => {
+            quitaDelCarrito(i);
+        }
+        )
+    }
 }
 
 function calculaCuota (monto, cuotas) {

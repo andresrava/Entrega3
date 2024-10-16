@@ -13,10 +13,13 @@ activaBotones();
 
 renderizaCarrito();
 
+activaElimina();
+
 let btnFactura = document.getElementById("factura");
 btnFactura.addEventListener("click", () => {
     factura();
 })
 
+// Recargo la lista de productos cuando se cambia la selección de promoción
 let chPromo = document.getElementById('flexCheckDefault');
 chPromo.addEventListener("change", renderizaProductos);
