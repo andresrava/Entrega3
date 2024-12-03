@@ -1,5 +1,5 @@
 
-function renderizaProductos() {
+export function renderizaProductos(productos) {
     let salida = "";
 for (const elemento of productos) {
     if (!(document.getElementById('flexCheckDefault').checked) || elemento.promocion) {
@@ -21,7 +21,7 @@ let contenido = document.getElementById("lista");
 contenido.innerHTML = salida;
 }
 
-function activaBotones() {
+export function activaBotones(productos) {
     for (let i = 1; i <= productos.length; i++) {
         let clave = "elemento";
         clave = clave.concat(i);
@@ -32,7 +32,7 @@ function activaBotones() {
     }
 }
 
-function agregaAlCarrito(articulo) {
+export function agregaAlCarrito(articulo) {
     console.log(articulo)
     let lista = sessionStorage.getItem('carrito');
     if (!lista) {
@@ -44,7 +44,7 @@ function agregaAlCarrito(articulo) {
     sessionStorage.setItem('carrito', JSON.stringify(lista));
 }
 
-function renderizaCarrito() {
+export function renderizaCarrito() {
     
     const carrito = JSON.parse(sessionStorage.getItem('carrito'));
     let salida = "";
@@ -64,7 +64,7 @@ function renderizaCarrito() {
     importe.innerText = total;
 }
 
-function quitaDelCarrito(codigo) {
+export function quitaDelCarrito(codigo) {
     const carrito = JSON.parse(sessionStorage.getItem('carrito'));
     carrito.splice((codigo-1), 1);
     sessionStorage.setItem('carrito', JSON.stringify(carrito));
@@ -72,7 +72,7 @@ function quitaDelCarrito(codigo) {
     activaElimina();
 }
 
-function activaElimina() {
+export function activaElimina() {
     const carrito = JSON.parse(sessionStorage.getItem('carrito'));
     for (let i = 1; i <= carrito.length; i++) {
         let clave = "boton";
@@ -85,15 +85,15 @@ function activaElimina() {
     }
 }
 
-function calculaCuota (monto, cuotas) {
+export function calculaCuota (monto, cuotas) {
     let cuota = monto * 0.015 / (1-(1+0.015) ** (-cuotas));
     return cuota.toFixed(1);
 }
 
-function factura() {
+export function factura() {
     const carrito = JSON.parse(sessionStorage.getItem('carrito'));
     let total = document.getElementById("total").innerText;
-    continua = confirm("¿Pagas contado?");
+    let continua = confirm("¿Pagas contado?");
     if (continua) {
         // Si paga contado se termina el programa
         alert("Muchas gracias por tu compra");
@@ -120,7 +120,7 @@ function factura() {
     
 }
 
-function filtraProductos(lista) {
+export function filtraProductos(lista) {
     let filtrado = [];
     for (const element of lista){
         if (element.promocion) {

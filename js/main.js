@@ -1,3 +1,4 @@
+import {renderizaProductos, activaBotones, agregaAlCarrito, renderizaCarrito, quitaDelCarrito, activaElimina, calculaCuota, factura, filtraProductos} from "./functions.js"
 
 const productos = [
     { "id": 1, "nombre": "zapatos de temporada", "precio": 2000, "imagen": "../resources/images/zapatos.jpeg", "promocion": true },
@@ -7,9 +8,9 @@ const productos = [
     { "id": 5, "nombre": "Mochila aventurera", "precio": 3000, "imagen": "../resources/images/mochila.png", "promocion": true } 
 ];
 
-renderizaProductos();
+renderizaProductos(productos);
 
-activaBotones(); 
+activaBotones(productos); 
 
 renderizaCarrito();
 
